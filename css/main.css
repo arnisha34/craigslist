@@ -954,10 +954,10 @@ textarea[for='description']{
 
 #main_content{
 	background-color: #fff;
-	height: 100%;
+	/*height: 100%;*/
 	width: 900px;
 	float: left;
-	padding-bottom: 30px;
+	padding-bottom: 60px;
 	margin-left: -20px;
 }
 
@@ -1390,9 +1390,14 @@ label[for='price']{
 	border-bottom: 1px dashed #fff;
    -moz-box-shadow: 0 0 0 5px #70a040;
    -webkit-box-shadow: 0 0 0 5px #70a040;
-   box-shadow: 0 0 0 5px #70a040;
-   position: relative;
-   z-index: 1;
+   	box-shadow: 0 0 0 5px #70a040;
+   	position: fixed;
+   	bottom: 0;
+   	right: 0;
+   	z-index: 1;
+   	width: 100%;
+   	margin-top: 30px;
+
 }
 
 #copy{
@@ -1417,6 +1422,22 @@ label[for='price']{
 
 .info:hover{
 	text-decoration: underline;
+}
+/*edit post */
+#edit_dialog{
+	width: 80%;
+
+}
+#edit_dialog input{
+	width: 80%;
+	display: block;
+	float: left;
+	top:10px;
+	left:0;
+	height: 30px;
+}
+#edit_dialog textarea{
+	margin-top: 20px;
 }
 
 

@@ -107,6 +107,18 @@
 				<?php $this->load->view('userPosts_view'); ?>
 
 			</div>
+
+			<div id="edit_dialog" title="Edit Post">
+				<form action='' method="post" accept-charset="utf-8">
+					<input type="text" name="p_title" id="p_title">
+					<input type="text" name="p_email" id="p_email">
+					<input type="text" name="p_price" id="p_price">
+					<input type="text" name="p_location" id="p_location">
+					<input type="hidden" name="p_id" id="p_id">
+					<textarea id="p_desc" cols="55" rows="5"> </textarea>
+					<input type="submit" value="Save Changes" id="save_changes">
+				</form>
+			</div>
 						
 			</div><!--closes main content-->	
 	

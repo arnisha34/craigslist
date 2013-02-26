@@ -186,7 +186,10 @@
 				});
 			
 			});
-		</script>	
+		</script>
+		<script>
+			var baseUrl = $('base').attr('href');
+		</script> 	
 					
 	</body><!--closes body-->
 	

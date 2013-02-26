@@ -42,19 +42,32 @@
 			$this->load->view('includes/page_view', $data);
 			
 		}
+
 		function editPost(){
-		
 			$postId = $this->input->post('postId');
-			$data['postInfo'] = $this->post_model->editPost($postId);
-			
-			//var_dump($data);
-			//die();
-			$this->index();
-			//$this->load->view('');
-			//$this->getCategoryPosts();
-			//echo 'you are now editing the post selected';
+			$data['postInfo'] = $this->post_model->getPost($postId);
+			echo $data['postInfo'];
 		}
-		
+		function deletePost(){
+			$postId = $this->input->post('postId');
+			$postDeleted = $this->post_model->deletePost($postId);
+			
+			if($postDeleted){
+				echo 'Post Deleted';	
+			}else{
+				echo 'Your post was not deleted';
+			}
+		}
+		function savePost(){
+
+			$postId = $this->input->post('postId');			
+			$saveChanges = $this->post_model->editPost($postId);
+			if($saveChanges){
+				echo 'Changes Saved';	
+			}else{
+				echo 'Your post has not been updates';
+			}
+		}
 		function addPost(){
 			
 			$data['title'] = $this->input->post('title');
@@ -63,6 +76,7 @@
 			$data['description'] = $this->input->post('description');
 			$data['price'] = $this->input->post('price');
 			$data['email'] = $this->input->post('email');
+			$data['userId'] = $this->session->userdata('userId');
 		
 			//echo $data;
 			$this->post_model->addPost($data);

@@ -5,9 +5,9 @@
 		echo '<div id="edit_dialog" title="EDIT POST">';
 		echo '<div id="post_info">';
 		
-			echo form_open('post/editPost');
+			echo form_open('post/savePost');
 			
-			echo form_hidden('postId', $postInfo->postId );
+			echo form_hidden('postId', $postInfo[0]->postId );
 			
 				$hide_email = array(
 					'value' => 'hide_email',
@@ -20,17 +20,17 @@
 				$text = array(
 					'id' => 'text_area',
 					'name' => 'description',
-					'value' => $postInfo->description,
+					'value' => $postInfo[0]->description,
 					'rows' => '10',
 					'cols' => '70',
 					'style' => 'color: gray; font-size: 14px; padding: 5px 0 0 3px;'
 				);
 					
-				echo form_input('title', $postInfo->title, 'id="post_ttl"');
-				echo form_input('price', $postInfo->price , 'id="post_price"');
-				echo form_input('location', $postInfo->location , 'id="location"');
+				echo form_input('title', $postInfo[0]->title, 'id="post_ttl"');
+				echo form_input('price', $postInfo[0]->price , 'id="post_price"');
+				echo form_input('location', $postInfo[0]->location , 'id="location"');
 				echo form_label('REPLY TO:', 'reply_to');
-				echo form_input('email', $postInfo->email, 'id="s_email"');
+				echo form_input('email', $postInfo[0]->email, 'id="s_email"');
 				//echo form_checkbox($hide_email);
 				//echo form_checkbox($anonymize);
 				
@@ -40,14 +40,13 @@
 				
 				echo form_close();
 				
-				echo '	</div>';
-				echo '	</div>';
+			echo '	</div>';
+			echo '	</div>';
 				
-	}elseif(isset ($categories)) {
+	}elseif(isset($categories)) {
 		//add a blank modal 
 		echo '<div id="member_dialog" title="CREATE A POST">';
 		
-	
 				$dropDownAttributes = array(
 					'id' => 'postType',
 					'name' => 'postType'
@@ -76,7 +75,8 @@
 	
 		
 		echo '<div id="post_info">';
-	
+		
+			echo form_open('post/savePost');
 			
 				$hide_email = array(
 					'value' => 'hide_email',

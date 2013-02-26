@@ -55,40 +55,51 @@
 			$this->db->set('date_created', 'NOW()', FALSE)->insert('post', $data);
 
 		}
-		
-		function editPost($postId){
-
-			$data = array(
-               'title' => $this->input->post('title'),
-               'location' => $this->input->post('location'),
-               'description' => $this->input->post('description'),
-               'price'=> $this->input->post('price'),
-               'email' => $this->input->post('email')
-            );
-         
-			$this->db->where('postId', $postId);
-			$this->db->update('post', $data);
-			
+		function getPost($postId){
 			$q= $this->db->get_where('post', array('postId' => $postId));
 			if($q->num_rows()>0){
 				foreach($q->result() as $row){
 					
 					$data[] = $row;
 				}
-				//var_dump($result);
+				
+				return json_encode($data[0]);	
 			}
 			
-			
-			return $data;
 		}
 		
-		function deletePost(){
+		function editPost($postId){
+
+			$data = array(
+              'title' => $this->input->post('title'),
+              'location' => $this->input->post('location'),
+              'description' => $this->input->post('description'),
+              'price'=> $this->input->post('price'),
+              'email' => $this->input->post('email')
+            );
+         
+			$this->db->where('postId', $postId);
+		 	$q = $this->db->update('post', $data);
+		 	
+		 	if($q){
+		 		return true;
+		 	}else{
+		 		return false;
+		 	}
 			
-			$this->db->where('id', $this->uri->segment(3));
-			$this->db->delete('post');
 		}
 		
+		function deletePost($postId){
 			
+			$this->db->where('postId', $postId);
+			$q= $this->db->delete('post');
+			if($q){
+		 		return true;
+		 	}else{
+		 		return false;
+		 	}
+
+		}
 		function categoryInfo(){
 			
 			$query = $this->db->get('categories');
